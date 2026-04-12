@@ -1,0 +1,27 @@
+# Development files
+docs/
+CLAUDE.md
+.claude/
+
+# Python
+__pycache__/
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
