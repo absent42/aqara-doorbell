@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Aqara Doorbell",
+        "description": "Enter the camera's LAN IP address and RTSP credentials. RTSP must be enabled in the Aqara app under camera settings > RTSP LAN Preview.",
+        "data": {
+          "camera_ip": "Camera IP address",
+          "rtsp_username": "RTSP username",
+          "rtsp_password": "RTSP password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to camera on port 54324. Verify the IP and that the camera is online.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This camera is already configured."
+    }
+  }
+}

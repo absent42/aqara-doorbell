@@ -1,0 +1,27 @@
+talk_start:
+  name: Start talk session
+  description: >
+    Open a 2-way audio session with the doorbell camera.
+    Cannot be used while browser two-way audio is active.
+    The doorbell supports one voice session at a time.
+  fields: {}
+
+talk_stop:
+  name: Stop talk session
+  description: Close the active 2-way audio session.
+  fields: {}
+
+talk_audio_file:
+  name: Play audio file on doorbell
+  description: >
+    Play a pre-recorded AAC-ADTS audio file through the doorbell speaker.
+    For automation use (e.g. doorbell press triggers a greeting).
+    Cannot be used while browser two-way audio is active.
+  fields:
+    file_path:
+      name: File path
+      description: Path to an AAC-ADTS audio file.
+      required: true
+      example: "/config/sounds/doorbell_response.aac"
+      selector:
+        text:

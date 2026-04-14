@@ -2,6 +2,9 @@
 docs/
 CLAUDE.md
 .claude/
+firmware/
+tests/
+pytest.ini
 
 # Python
 __pycache__/
