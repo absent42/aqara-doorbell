@@ -87,11 +87,11 @@ Replace `DOORBELL_IP` with your doorbell's IP address (dots replaced with unders
 type: custom:webrtc-camera
 ui: true
 streams:
-  - url: aqara_doorbell_10_1_20_150
+  - url: aqara_doorbell_DOORBELL_IP
     mode: webrtc
     media: video,audio
     name: Listening
-  - url: aqara_doorbell_10_1_20_150
+  - url: aqara_doorbell_DOORBELL_IP
     mode: webrtc
     media: video,audio,microphone
     name: Speaking
