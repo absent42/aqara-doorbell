@@ -6,7 +6,7 @@ Protocol reverse-engineered from the Aqara Android app.
 
 ## Disclaimer
 
-This is NOT a complete production ready integration for the Aqara G400 Doorbell, it is a proof of concept designed to test if fully local two-way audio is possible on the device. It is recommended to use the doorbell in Home Assistant via the offical HomeKit integration despite this not supporting two-way audio.
+This is **NOT** a complete production ready integration for the Aqara G400 Doorbell, it is a proof of concept designed to test if fully local two-way audio independent of any hub/app/cloud connection is possible with the device. It is recommended to use the doorbell in Home Assistant via the official HomeKit integration.
 
 ## Features
 
