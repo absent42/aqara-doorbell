@@ -122,9 +122,10 @@ async def _setup_go2rtc_config(
 
     entry.runtime_data.go2rtc_stream_name = stream_name
 
-    # ffmpeg source references stream by name (reuses the RTSP connection)
-    # audio=copy preserves AAC for MSE mode, audio=opus adds WebRTC compatibility
-    ffmpeg_source = f"ffmpeg:{stream_name}#audio=opus#audio=copy"
+    # ffmpeg source references stream by name (reuses the RTSP connection).
+    # video=copy avoids re-encoding the H.264 stream. audio=opus adds WebRTC
+    # compatibility; audio=copy preserves AAC for MSE mode.
+    ffmpeg_source = f"ffmpeg:{stream_name}#video=copy#audio=opus#audio=copy"
 
     await hass.async_add_executor_job(
         go2rtc_mod.register_stream,
