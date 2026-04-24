@@ -1,6 +1,8 @@
-# Aqara G400 Doorbell - Home Assistant Integration
+# Aqara Doorbell - Home Assistant Integration
 
 Proof of concept for local-only two-way audio and doorbell press detection for the **Aqara G400 Video Doorbell** (`lumi.camera.agl013`). No cloud, no hub, no proprietary SDK required.
+
+Written for and tested on the G400 Doorbell, but user feedback states it works with other Aqara doorbell models such as the G410.
 
 Protocol reverse-engineered from the Aqara Android app.
 
@@ -18,7 +20,7 @@ This is **NOT** a complete production ready integration for the Aqara G400 Doorb
 
 ## Requirements
 
-- Aqara G400 Video Doorbell on the same LAN as Home Assistant
+- Aqara Video Doorbell on the same LAN as Home Assistant
 - RTSP credentials configured in the Aqara Home app (Device > More Settings > RTSP LAN Preview)
 - [AlexxIT's WebRTC](https://github.com/AlexxIT/WebRTC) custom component (for two-way audio dashboard card)
 - Home Assistant 2026.2+ with go2rtc
