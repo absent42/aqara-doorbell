@@ -208,5 +208,6 @@ Standard RTP (RFC 3550) with payload type 97 (dynamic AAC):
 - The dashboard card must use `url:` (go2rtc stream name), not `entity:` (HA entity ID)
 - go2rtc restart required after initial installation (stream config is written to `go2rtc.yaml`)
 - Backchannel audio quality is limited to G.711 A-law at 8kHz (go2rtc limitation)
+- Filtering of multicast events is not implemented
 - The doorbell supports one voice session at a time
 - Only tested with the Aqara G400 model
