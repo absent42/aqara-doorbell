@@ -55,7 +55,10 @@ class MulticastDoorbellProtocol(asyncio.DatagramProtocol):
         _LOGGER.error("Multicast protocol error: %s", exc)
 
     def connection_lost(self, exc: Exception | None) -> None:
-        _LOGGER.warning("Multicast protocol connection lost: %s", exc)
+        if exc is None:
+            _LOGGER.debug("Multicast protocol closed")
+        else:
+            _LOGGER.warning("Multicast protocol connection lost: %s", exc)
 
 
 class AqaraDoorbellEvent(AqaraDoorbellEntity, EventEntity):

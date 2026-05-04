@@ -143,7 +143,11 @@ async def async_unload_entry(
 
     # Remove go2rtc stream from config (best-effort)
     if entry.runtime_data.go2rtc_stream_name:
-        go2rtc_mod.remove_stream(hass.config.config_dir, entry.runtime_data.go2rtc_stream_name)
+        await hass.async_add_executor_job(
+            go2rtc_mod.remove_stream,
+            hass.config.config_dir,
+            entry.runtime_data.go2rtc_stream_name,
+        )
 
     result = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
 
