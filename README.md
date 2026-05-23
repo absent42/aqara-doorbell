@@ -6,6 +6,8 @@ Written for and tested on the G400 Doorbell, but user feedback states it works w
 
 Protocol reverse-engineered from the Aqara Android app.
 
+Use [Aqara Camera 2-Way Audio integration](https://github.com/absent42/Aqara-Camera-2-Way-Audio) for better support of any Aqara camera video/audio features. 
+
 ## Disclaimer
 
 This is **NOT** a complete wokring production ready integration for the Aqara G400 Doorbell, it is a **proof of concept** designed to test if fully local **two-way audio** independent of any hub/app/cloud connection is possible with the device. You will **not** get a fully functional stable doorbell with this integration. It is recommended to use the doorbell in Home Assistant via the official HomeKit integration.
