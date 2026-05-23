@@ -6,7 +6,7 @@ Written for and tested on the G400 Doorbell, but user feedback states it works w
 
 Protocol reverse-engineered from the Aqara Android app.
 
-Use [Aqara Camera 2-Way Audio integration](https://github.com/absent42/Aqara-Camera-2-Way-Audio) for better support of any Aqara camera video/audio features. 
+Use [Aqara Camera 2-Way Audio integration](https://github.com/absent42/Aqara-Camera-2-Way-Audio) for better support of any Aqara camera's video/audio features. 
 
 ## Disclaimer
 
