@@ -5,6 +5,9 @@ CLAUDE.md
 firmware/
 tests/
 pytest.ini
+tools/
+data/
+firmware/
 
 # Python
 __pycache__/

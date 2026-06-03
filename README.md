@@ -2,7 +2,7 @@
 
 **This is **NOT** a complete working production ready integration for the Aqara G400 Doorbell, it is **only** a **proof of concept** designed to test if fully local **two-way audio** independent of any hub/app/cloud connection is possible with the device. You will **not** get a fully functional stable doorbell with this integration. Please do not use this integration expecting a properly functioning G400 doorbell, it is recommended to use the doorbell in Home Assistant via the official HomeKit integration.**
 
-Proof of concept for local-only two-way audio and doorbell press detection for the **Aqara G400 Video Doorbell** (`lumi.camera.agl013`). No cloud, no hub, no proprietary SDK required.
+Proof of concept for local-only two-way audio for the **Aqara G400 Video Doorbell** (`lumi.camera.agl013`). No cloud, no hub, no proprietary SDK required.
 
 Written for and tested on the G400 Doorbell, but user feedback states it works with other Aqara doorbell models such as the G410.
 
@@ -14,7 +14,6 @@ Use [Aqara Camera 2-Way Audio integration](https://github.com/absent42/Aqara-Cam
 
 - **Video streaming** via RTSP (H.264)
 - **Two-way audio** via go2rtc backchannel — speak through the doorbell from the HA dashboard
-- **Doorbell press detection** via UDP multicast
 - **Audio file playback** — play pre-recorded messages through the doorbell speaker
 - **Fully local** — all communication stays on your LAN
 
@@ -25,22 +24,11 @@ Use [Aqara Camera 2-Way Audio integration](https://github.com/absent42/Aqara-Cam
 - [AlexxIT's WebRTC](https://github.com/AlexxIT/WebRTC) custom component (for two-way audio dashboard card)
 - Home Assistant 2026.2+ with go2rtc
 
-## Installation
-
-1. Copy the `custom_components/aqara_doorbell` folder to your HA config directory, or click:
-
-   [![Open HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=absent42&repository=aqara-doorbell&category=Integration)
-2. Restart Home Assistant
-3. Go to **Settings > Devices & Services > Add Integration > Aqara Doorbell**
-4. Enter the doorbell's IP address and RTSP credentials
-5. Restart Home Assistant once more (go2rtc needs to read the new stream config)
-
 ## Entities
 
 | Entity | Type | Description |
 |--------|------|-------------|
 | Camera | `camera` | RTSP video stream from the doorbell |
-| Doorbell | `event` | Fires a `ring` event when the doorbell button is pressed |
 
 ## Two-Way Audio
 
@@ -112,13 +100,14 @@ style: >
 Play pre-recorded audio files through the doorbell speaker using the `talk_audio_file` service:
 
 ```yaml
-# Example automation: play a greeting when doorbell rings
+# Example automation: play a greeting through the doorbell speaker.
+# This integration does not provide a ring event — use any trigger you like.
+# For a local doorbell-press trigger, pair the doorbell with Home Assistant's
+# official HomeKit integration and use its doorbell event entity (recommended).
 automation:
   trigger:
     platform: state
-    entity_id: event.aqara_doorbell_DOORBELL_IP_doorbell
-    attribute: event_type
-    to: ring
+    entity_id: event.your_homekit_doorbell  # from the HomeKit integration
   action:
     service: aqara_doorbell.talk_audio_file
     data:
@@ -135,26 +124,6 @@ The file path must be in HA's `allowlist_external_dirs` configuration.
 
 > **Note:** Talk services and browser two-way audio are mutually exclusive. The doorbell supports one voice session at a time.
 
-## Doorbell Press Detection
-
-The doorbell sends a UDP multicast packet to `230.0.0.1:10008` when the button is pressed. The integration listens for these packets and fires a `ring` event on the doorbell entity. This works independently of the Aqara hub — no cloud or hub connection needed.
-
-**Please note multicast filtering in NOT implemented, so doorbell events are not reliable and should NOT be used.**
-
-Use the event entity in automations:
-
-```yaml
-automation:
-  trigger:
-    platform: state
-    entity_id: event.aqara_doorbell_DOORBELL_IP_doorbell
-    attribute: event_type
-    to: ring
-  action:
-    - service: notify.mobile_app
-      data:
-        message: "There's somebody at the door!"
-```
 
 ## Services
 
@@ -173,7 +142,6 @@ The Aqara G400 LAN talk protocol was reverse-engineered from the Aqara Android a
 | Video/Audio stream | RTSP over TCP | 8554 | H.264 video + AAC audio from camera |
 | Voice control | TCP | 54324 | Session management (start/stop/heartbeat) |
 | Voice audio | UDP (RTP) | 54323 | AAC-LC ADTS frames to doorbell speaker |
-| Doorbell press | UDP multicast | 230.0.0.1:10008 | Button press notification |
 
 ### Control channel (TCP 54324)
 
@@ -210,6 +178,6 @@ Standard RTP (RFC 3550) with payload type 97 (dynamic AAC):
 - The dashboard card must use `url:` (go2rtc stream name), not `entity:` (HA entity ID)
 - go2rtc restart required after initial installation (stream config is written to `go2rtc.yaml`)
 - Backchannel audio quality is limited to G.711 A-law at 8kHz (go2rtc limitation)
-- Filtering of multicast events is not implemented making doorbell events unreliable
+- Doorbell press (ring) detection is not provided by this integration; pair the doorbell with Home Assistant's official HomeKit integration for local ring events
 - The doorbell supports one voice session at a time
 - Only tested with the Aqara G400 model

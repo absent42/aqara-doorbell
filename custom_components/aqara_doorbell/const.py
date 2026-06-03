@@ -13,8 +13,6 @@ CONF_RTSP_PASSWORD = "rtsp_password"
 RTSP_PORT = 8554
 CONTROL_PORT = 54324
 AUDIO_PORT = 54323
-MULTICAST_GROUP = "230.0.0.1"
-MULTICAST_PORT = 10008
 
 # Protocol constants
 MAGIC = b"\xFE\xEF"
@@ -29,4 +27,4 @@ HEARTBEAT_INTERVAL = 5.0  # seconds
 TCP_CONNECT_TIMEOUT = 3.0  # seconds
 
 # Platforms
-PLATFORMS: list[Platform] = [Platform.CAMERA, Platform.EVENT]
+PLATFORMS: list[Platform] = [Platform.CAMERA]
