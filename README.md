@@ -141,6 +141,8 @@ The file path must be in HA's `allowlist_external_dirs` configuration.
 
 The doorbell sends a UDP multicast packet to `230.0.0.1:10008` when the button is pressed. The integration listens for these packets and fires a `ring` event on the doorbell entity. This works independently of the Aqara hub — no cloud or hub connection needed.
 
+**Please note multicast filtering in NOT implemented, so doorbell events are not reliable and should NOT be used.**
+
 Use the event entity in automations:
 
 ```yaml
